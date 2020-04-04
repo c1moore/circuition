@@ -1,0 +1,65 @@
+{
+  "name": "typescript-template",
+  "version": "1.0.0",
+  "description": "Template for creating a TS project.",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && ./node_modules/.bin/tsc",
+    "test": "NODE_ENV=test nyc mocha",
+    "test:watch": "nodemon -e js,ts --watch src --watch test --exec \"NODE_ENV=test mocha\"",
+    "lint": "npx eslint src/**/*.ts src/*.ts",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c1moore/typescript-template.git"
+  },
+  "keywords": [
+    "typescript",
+    "ts",
+    "template"
+  ],
+  "author": "Calvin Moore <c1moore>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c1moore/typescript-template/issues"
+  },
+  "homepage": "https://github.com/c1moore/typescript-template#readme",
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/chai": "^4.2.11",
+    "@types/chai-as-promised": "^7.1.2",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.1",
+    "@types/sinon": "^7.5.2",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "mocha": "^7.1.0",
+    "nodemon": "^2.0.2",
+    "nyc": "^15.0.0",
+    "sinon": "^9.0.1",
+    "typescript": "^3.8.3"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "reporter": [
+      "lcov",
+      "json"
+    ],
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.spec.js",
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/coverage/**"
+    ],
+    "excludeAfterRemap": false
+  }
+}

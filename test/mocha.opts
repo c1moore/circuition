@@ -1,0 +1,20 @@
+# Configuration file for Mocha tests
+
+# Support for TS and nyc
+--require ts-node/register
+--require source-map-support/register
+
+# Test TS files
+--extension ts
+
+# Initialize the tests
+--file './test/mocha.init'
+
+# Recursively search for tests
+--recursive
+
+# Use pretty colors
+--colors
+
+# Exit after tests have completed
+--exit
