@@ -112,4 +112,4 @@ workflows:
       - publish:
           requires:
             - build
-          <<: *filter_any
+          <<: *filter_tags
