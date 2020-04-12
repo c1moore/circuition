@@ -17,7 +17,7 @@ references:
       branches:
         ignore: /.*/
       tags:
-        only: /v?^\d+\.\d+\.\d+.*/
+        only: /^v?\d+\.\d+\.\d+.*/
 
 orbs:
   codecov: codecov/codecov@1.0.5
