@@ -1,6 +1,6 @@
 {
   "name": "circuition",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An event emitter framework that allows you to control the full event lifecycle.",
   "main": "index.js",
   "scripts": {
