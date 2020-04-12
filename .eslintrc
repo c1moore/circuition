@@ -23,6 +23,8 @@
     "test/*"
   ],
   "rules": {
-    "import/extensions": ["error", "never"]
+    "import/extensions": ["error", "never"],
+    "semi": "off",
+    "@typescript-eslint/semi": ["error"]
   }
 }

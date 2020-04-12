@@ -19,17 +19,6 @@ references:
       tags:
         only: /^\d+\.\d+\.\d+.*/
 
-commands:
-  publish:
-    description: "Publish the server to where ever it needs to go."
-    parameters:
-      env:
-        type: string
-    steps:
-      - run:
-          name: Publish
-          command: echo "Make sure to update this command to publish your server appropriately."
-
 orbs:
   codecov: codecov/codecov@1.0.5
 
@@ -80,26 +69,23 @@ jobs:
           name: Prune
           command: npm prune --production
       - run:
-          name: Compress
-          command: zip -r $CIRCLE_TAG.zip ./dist ./node_modules ./*.js
+          name: Copy Meta
+          command: |
+            cp package.json ./dist
+            cp package-lock.json ./dist
+            cp LICENSE ./dist
       - persist_to_workspace:
           root: .
           paths:
             - $CIRCLE_TAG.zip
-  publish-dev:
+  publish:
     <<: *container_config
     steps:
       - attach_workspace:
           at: .
-      - publish:
-          env: development
-  publish-production:
-    <<: *container_config
-    steps:
-      - attach_workspace:
-          at: .
-      - publish:
-          env: production
+      - run:
+          name: Publish
+          command: npm publish ./dist
 
 workflows:
   version: 2
@@ -120,11 +106,7 @@ workflows:
             - lint
             - test
           <<: *filter_any
-      - publish-dev:
-          requires:
-            - build
-          <<: *filter_tags
-      - publish-production:
+      - publish:
           requires:
             - build
           <<: *filter_tags
