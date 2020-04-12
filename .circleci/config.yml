@@ -77,7 +77,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - $CIRCLE_TAG.zip
+            - ./dist
   publish:
     <<: *container_config
     steps:
